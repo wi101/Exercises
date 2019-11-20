@@ -1,7 +1,7 @@
 object Population extends App {
 
   final case class Person(id: String)
-  final case class City(id: Long, population: Set[Person])
+  final case class Country(id: Long, population: Set[Person])
 
   type Result = List[Set[Person]]
   object Result {
@@ -14,7 +14,7 @@ object Population extends App {
     }
   }
 
-  def getCities(personIt: Iterator[(Person, Person)]): List[City] = {
+  def getCountries(personIt: Iterator[(Person, Person)]): List[Country] = {
     var result: Result = List.empty
     while (personIt.hasNext) {
       val (person1, person2) = personIt.next()
@@ -24,10 +24,10 @@ object Population extends App {
         result.find(_.contains(person2)).fold(Set.empty[Person])(identity)
       result = Result.update(result, set1, set2, Set(person1, person2))
     }
-    result.zipWithIndex.map { case (r, i) => City(i, r) }
+    result.zipWithIndex.map { case (r, i) => Country(i, r) }
   }
 
-  val cities1 = getCities(
+  val country1 = getCountries(
     List(Person("A") -> Person("B"),
       Person("A") -> Person("C"),
       Person("B") -> Person("D"),
@@ -35,19 +35,19 @@ object Population extends App {
       Person("Z") -> Person("W"),
       Person("L") -> Person("A")).iterator)
 
-  val cities2 = getCities(
+  val country2 = getCountries(
     List(Person("A") -> Person("B"),
       Person("D") -> Person("E"),
       Person("B") -> Person("K"),
       Person("L") -> Person("A")).iterator)
 
-  val cities3 = getCities(
+  val country3 = getCountries(
     List(Person("A") -> Person("B"),
       Person("D") -> Person("E"),
       Person("W") -> Person("K")).iterator)
 
-  println(s"the cities 1 are: $cities1")
-  println(s"the cities 2 are: $cities2")
-  println(s"the cities 2 are: $cities3")
+  println(s"the country 1 are: $country1")
+  println(s"the country 2 are: $country2")
+  println(s"the country 2 are: $country3")
 
 }
