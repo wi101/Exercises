@@ -30,7 +30,7 @@ object Population extends App {
     result.zipWithIndex.map { case (r, i) => Country(i, r) }
   }
 
-  val country1 = getCountries(
+  val countries1 = getCountries(
     List(Person("A") -> Person("B"),
          Person("A") -> Person("C"),
          Person("B") -> Person("D"),
@@ -38,19 +38,19 @@ object Population extends App {
          Person("Z") -> Person("W"),
          Person("L") -> Person("A")).iterator)
 
-  val country2 = getCountries(
+  val countries2 = getCountries(
     List(Person("A") -> Person("B"),
          Person("D") -> Person("E"),
          Person("B") -> Person("K"),
          Person("L") -> Person("A")).iterator)
 
-  val country3 = getCountries(
+  val countries3 = getCountries(
     List(Person("A") -> Person("B"),
          Person("D") -> Person("E"),
          Person("W") -> Person("K")).iterator)
 
-  println(s"the country 1 are: $country1")
-  println(s"the country 2 are: $country2")
-  println(s"the country 2 are: $country3")
+  println(s"Result 1: $countries1")
+  println(s"Result 2: $countries2")
+  println(s"Result 3: $countries3")
 
 }
