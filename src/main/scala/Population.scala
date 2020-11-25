@@ -20,9 +20,9 @@ object Population extends App {
       if (personIt.hasNext) {
         val (person1, person2) = personIt.next()
         val set1 =
-          result.find(_.contains(person1)).fold(Set.empty[Person])(identity)
+          result.find(_.contains(person1)).getOrElse(Set.empty[Person])
         val set2 =
-          result.find(_.contains(person2)).fold(Set.empty[Person])(identity)
+          result.find(_.contains(person2)).getOrElse(Set.empty[Person])
         loop(Result.update(result, set1, set2, Set(person1, person2)), personIt)
       } else result
     }
